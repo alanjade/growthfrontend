@@ -119,10 +119,10 @@ export default function Dashboard() {
   }, [user, navigate]);
 
   // Calculate profit/loss percentage
-  const profitLoss = stats
-    ? ((stats.balance - stats.total_invested) / stats.total_invested) * 100
-    : 0;
-  const isProfit = profitLoss >= 0;
+  // const profitLoss = stats
+  //   ? ((stats.balance - stats.total_invested) / stats.total_invested) * 100
+  //   : 0;
+  // const isProfit = profitLoss >= 0;
 
   if (loadingUser) {
     return (
@@ -178,8 +178,8 @@ export default function Dashboard() {
                 title="Total Balance"
                 value={formatCurrency(stats?.balance)}
                 fullValue={`₦${Number(stats?.balance ?? 0).toLocaleString()}`}
-                trend={isProfit ? "up" : "down"}
-                trendValue={`${profitLoss.toFixed(1)}%`}
+                {/* trend={isProfit ? "up" : "down"}
+               trendValue={`${profitLoss.toFixed(1)}%`} */}
               />
               <StatCard
                 icon={<TrendingUp size={24} className="text-green-600" />}
