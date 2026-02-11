@@ -118,12 +118,6 @@ export default function Dashboard() {
     };
   }, [user, navigate]);
 
-  // Calculate profit/loss percentage
-  // const profitLoss = stats
-  //   ? ((stats.balance - stats.total_invested) / stats.total_invested) * 100
-  //   : 0;
-  // const isProfit = profitLoss >= 0;
-
   if (loadingUser) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -178,8 +172,6 @@ export default function Dashboard() {
                 title="Total Balance"
                 value={formatCurrency(stats?.balance)}
                 fullValue={`₦${Number(stats?.balance ?? 0).toLocaleString()}`}
-                {/* trend={isProfit ? "up" : "down"}
-               trendValue={`${profitLoss.toFixed(1)}%`} */}
               />
               <StatCard
                 icon={<TrendingUp size={24} className="text-green-600" />}
@@ -240,22 +232,11 @@ export default function Dashboard() {
 }
 
 /* ---------------- Stat Card Component ---------------- */
-const StatCard = ({ icon, title, value, fullValue, subtitle, trend, trendValue }) => {
+const StatCard = ({ icon, title, value, fullValue, subtitle }) => {
   return (
     <div className="bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-3">
         <div className="p-2 rounded-lg bg-gray-50">{icon}</div>
-        {trend && (
-          <span
-            className={`text-xs font-medium px-2 py-1 rounded-full ${
-              trend === "up"
-                ? "bg-green-50 text-green-700"
-                : "bg-red-50 text-red-700"
-            }`}
-          >
-            {trendValue}
-          </span>
-        )}
       </div>
       <p className="text-sm text-gray-500 mb-1">{title}</p>
       <p className="text-2xl font-bold text-gray-800" title={fullValue}>
