@@ -179,7 +179,7 @@ export default function Dashboard() {
                 value={formatCurrency(stats?.balance)}
                 fullValue={`₦${Number(stats?.balance ?? 0).toLocaleString()}`}
                 trend={isProfit ? "up" : "down"}
-                trendValue={`${profitLoss.toFixed(1)}%`}
+                {/* trendValue={`${profitLoss.toFixed(1)}%`} */}
               />
               <StatCard
                 icon={<TrendingUp size={24} className="text-green-600" />}
