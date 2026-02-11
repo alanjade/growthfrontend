@@ -119,10 +119,10 @@ export default function Dashboard() {
   }, [user, navigate]);
 
   // Calculate profit/loss percentage
-  const profitLoss = stats
-    ? ((stats.balance - stats.total_invested) / stats.total_invested) * 100
-    : 0;
-  const isProfit = profitLoss >= 0;
+  // const profitLoss = stats
+  //   ? ((stats.balance - stats.total_invested) / stats.total_invested) * 100
+  //   : 0;
+  // const isProfit = profitLoss >= 0;
 
   if (loadingUser) {
     return (
