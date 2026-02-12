@@ -36,16 +36,12 @@ export default function ForgotPassword() {
         navigate("/reset-verify", { state: { email } });
       }, 1500);
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 
-                           err.response?.data?.error || 
-                           "Failed to send reset code. Please try again.";
-      setError(errorMessage);
+      // Use shared error handler and show toast notification
+      handleApiError(err, setError, setFieldErrors);
+      const errorMessage =
+        err.response?.data?.message || err.response?.data?.error ||
+        "Failed to send reset code. Please try again.";
       toast.error(errorMessage);
-      
-      // Handle field errors if any
-      if (err.response?.data?.errors) {
-        setFieldErrors(err.response.data.errors);
-      }
     } finally {
       setLoading(false);
     }
@@ -53,28 +49,14 @@ export default function ForgotPassword() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 px-4 py-8">
-      {/* Toast Container */}
       <Toaster
         position="top-right"
         reverseOrder={false}
         toastOptions={{
-          success: {
-            duration: 4000,
-            style: {
-              background: "#10b981",
-              color: "#fff",
-            },
-          },
-          error: {
-            duration: 4000,
-            style: {
-              background: "#ef4444",
-              color: "#fff",
-            },
-          },
+          success: { duration: 4000, style: { background: "#10b981", color: "#fff" } },
+          error: { duration: 4000, style: { background: "#ef4444", color: "#fff" } },
         }}
       />
-
       <div className="w-full max-w-md">
         {/* Logo/Brand */}
         <div className="text-center mb-8">
