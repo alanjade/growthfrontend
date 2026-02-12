@@ -99,10 +99,16 @@ export default function Dashboard() {
 
         if (err.response?.status === 401) {
           localStorage.removeItem("token");
-          toast.error("Session expired. Please log in again.");
+          toast.error("Session expired. Please log in again.", {
+            duration: 5000,
+            position: "top-center",
+          });
           navigate("/login", { replace: true });
         } else {
-          toast.error("Failed to load dashboard data.");
+          toast.error("Failed to load dashboard data.", {
+            duration: 5000,
+            position: "top-center",
+          });
         }
       } finally {
         setLoadingStats(false);
@@ -178,8 +184,8 @@ export default function Dashboard() {
                 title="Total Balance"
                 value={formatCurrency(stats?.balance)}
                 fullValue={`₦${Number(stats?.balance ?? 0).toLocaleString()}`}
-                {/* trend={isProfit ? "up" : "down"}
-               trendValue={`${profitLoss.toFixed(1)}%`} */}
+                // trend={isProfit ? "up" : "down"}
+                // trendValue={`${profitLoss.toFixed(1)}%`}
               />
               <StatCard
                 icon={<TrendingUp size={24} className="text-green-600" />}
